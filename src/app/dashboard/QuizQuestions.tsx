@@ -20,6 +20,7 @@ export default function QuestionList() {
   const { total, correct, loading: resultLoading } = useAppSelector(
     (state) => state.quizResult
   );
+  const { user } = useAppSelector((state) => state.auth);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -41,9 +42,11 @@ export default function QuestionList() {
 
   return (
     <div className="mt-6 p-4">
+      {user?.role === 'PUBLIC' && (
       <Typography variant="2xl" weight="bold">
         Questions List
       </Typography>
+      )}
 
       {loading && <p>Loading questions...</p>}
       {error && <p className="text-red-500 text-sm">Error: {error}</p>}

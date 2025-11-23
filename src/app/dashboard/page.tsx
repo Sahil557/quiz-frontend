@@ -166,7 +166,7 @@ export default function Dashboard() {
           <div className="space-y-4 px-2">
             <Input id="questionText" label="Question Text" value={questionForm.questionText} onChange={handleQuestionChange} placeholder="Enter question" required />
             {questionForm.options.map((opt, idx) => (
-              <Input key={idx} id={`option${idx}`} label={`Option ${idx + 1}`} value={opt} onChange={handleQuestionChange} placeholder={`Option ${idx + 1}`} required />
+              <Input key={idx} id={`option${idx}`} label={`Option ${idx + 1}`} value={opt} onChange={handleQuestionChange} placeholder={`Option ${idx + 1}`} required={idx < 2}  />
             ))}
             <Input id="correctAnswer" label="Correct Answer" value={questionForm.correctAnswer} onChange={handleQuestionChange} placeholder="Enter correct answer" required />
             {qError && <Typography align="right" color="text-alert" variant="sm">Please fill all the fields correctly.</Typography>}
