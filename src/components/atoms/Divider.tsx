@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface DividerProps {
   label?: string;
   className?: string;

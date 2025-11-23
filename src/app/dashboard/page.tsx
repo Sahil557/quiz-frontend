@@ -81,7 +81,6 @@ export default function Dashboard() {
     window.location.reload();
   };
 
-  
   return (
     <div className="p-8">
       <Row>

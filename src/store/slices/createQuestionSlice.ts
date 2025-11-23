@@ -17,7 +17,6 @@ const initialState: QuestionState = {
   question: undefined,
 };
 
-// Async thunk to create question
 export const createQuestion = createAsyncThunk(
   'question/createQuestion',
   async (
@@ -27,7 +26,7 @@ export const createQuestion = createAsyncThunk(
     try {
       const response = await api.post('/questions', data);
       debugger;
-      return response.data; // { id, questionText, options, correctAnswer, createdById }
+      return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Something went wrong');
     }

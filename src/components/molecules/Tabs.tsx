@@ -25,7 +25,6 @@ export default function Tabs({
 }: TabsProps) {
   const [active, setActive] = useState(defaultIndex);
 
-  // 🔥 Fix: update active tab when defaultIndex changes
   useEffect(() => {
     setActive(defaultIndex);
   }, [defaultIndex]);

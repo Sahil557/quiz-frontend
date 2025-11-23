@@ -1,4 +1,3 @@
-// store/slices/submitAnswerSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "@/services/api";
 
@@ -23,7 +22,6 @@ const initialState: SubmitState = {
   correctAnswer: null,
 };
 
-// Async thunk to submit answer
 export const submitAnswer = createAsyncThunk(
   "quiz/submitAnswer",
   async (payload: SubmitAnswerPayload, { rejectWithValue }) => {

@@ -1,4 +1,3 @@
-// store/slices/createUserSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import api from '../../services/api';
 
@@ -27,7 +26,6 @@ const initialState: CreateUserState = {
   user: null,
 };
 
-// Async thunk for creating a user
 export const createUser = createAsyncThunk(
   'createUser/createUser',
   async (
@@ -36,7 +34,7 @@ export const createUser = createAsyncThunk(
   ) => {
     try {
       const response = await api.post('auth/register', userData);
-      return response.data; // { message, user }
+      return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Something went wrong');
     }

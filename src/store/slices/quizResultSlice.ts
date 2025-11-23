@@ -20,7 +20,7 @@ export const fetchQuizResult = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await api.get("/quiz/result");
-      return res.data; // { total, correct }
+      return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || "Failed to fetch result");
     }

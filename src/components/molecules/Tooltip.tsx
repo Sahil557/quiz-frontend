@@ -34,19 +34,16 @@ export default function Tooltip({
   const [tooltipRef, setTooltipRef] = useState<HTMLDivElement | null>(null);
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
 
-  // Ensure component is mounted on client to avoid SSR issues with document
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Determine placement string from props
   const placementString = top ? 'top' : right ? 'right' : bottom ? 'bottom' : left ? 'left' : 'top';
 
   useEffect(() => {
     setPlacement(placementString);
   }, [placementString]);
 
-  // Calculate tooltip position relative to the target container
   useEffect(() => {
     if (!visible || !containerRef || !tooltipRef) return;
 
@@ -77,7 +74,6 @@ export default function Tooltip({
         break;
     }
 
-    // Prevent tooltip from going off-screen (optional, you can add this)
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 

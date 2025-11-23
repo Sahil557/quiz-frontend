@@ -65,7 +65,6 @@ export default function Modal({
             showShadow && 'p-0'
           )}
         >
-          {/* Header */}
           <Row className={twMerge('sticky top-0 z-10', showShadow && 'shadow p-4')}>
             <Typography variant="base" weight="medium">
               {title}
@@ -78,7 +77,6 @@ export default function Modal({
             />
           </Row>
 
-          {/* Body */}
           <div
             className={twMerge(
               'overflow-y-auto py-4 max-h-[calc(95vh-120px)]',
