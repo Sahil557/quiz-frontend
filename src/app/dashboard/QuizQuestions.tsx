@@ -3,8 +3,14 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { fetchQuestions } from "@/store/slices/getQuestionsSlice";
-import { submitAnswer, resetSubmitAnswer } from "@/store/slices/submitAnswerSlice";
-import { fetchQuizResult, resetQuizResult } from "@/store/slices/quizResultSlice";
+import {
+  submitAnswer,
+  resetSubmitAnswer,
+} from "@/store/slices/submitAnswerSlice";
+import {
+  fetchQuizResult,
+  resetQuizResult,
+} from "@/store/slices/quizResultSlice";
 import { Typography, Row, Button, CardWrapper } from "@/components/atoms";
 import Stepper from "@/components/organisams/Stepper";
 import Divider from "@/components/atoms/Divider";
@@ -14,12 +20,16 @@ export default function QuestionList() {
   const { questions, loading, error, totalPages } = useAppSelector(
     (state) => state.questionsList
   );
-  const { userAnswer, correctAnswer, loading: submitLoading } = useAppSelector(
-    (state) => state.submitAnswer
-  );
-  const { total, correct, loading: resultLoading } = useAppSelector(
-    (state) => state.quizResult
-  );
+  const {
+    userAnswer,
+    correctAnswer,
+    loading: submitLoading,
+  } = useAppSelector((state) => state.submitAnswer);
+  const {
+    total,
+    correct,
+    loading: resultLoading,
+  } = useAppSelector((state) => state.quizResult);
   const { user } = useAppSelector((state) => state.auth);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,12 +50,19 @@ export default function QuestionList() {
 
   const question = questions[0];
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    window.location.reload();
+  };
+
   return (
     <div className="mt-6 p-4">
-      {user?.role === 'PUBLIC' && (
-      <Typography variant="2xl" weight="bold">
-        Questions List
-      </Typography>
+      {user?.role === "PUBLIC" && (
+        <Typography variant="2xl" weight="bold">
+          Questions List
+        </Typography>
       )}
 
       {loading && <p>Loading questions...</p>}
@@ -68,11 +85,11 @@ export default function QuestionList() {
 
               if (userAnswer) {
                 if (opt === correctAnswer) {
-                  bgClass = "bg-green-500 border-green-500";
-                  textClass = "text-white";
+                  bgClass = "bg-success border-success";
+                  textClass = "text-success";
                 } else if (opt === userAnswer && userAnswer !== correctAnswer) {
-                  bgClass = "bg-red-500 border-red-500";
-                  textClass = "text-white";
+                  bgClass = "bg-alert border-alert";
+                  textClass = "text-alert";
                 } else {
                   bgClass = "bg-fog border-smoke text-black cursor-not-allowed";
                 }
@@ -89,7 +106,9 @@ export default function QuestionList() {
                   >
                     {label}
                   </div>
-                  <Typography className={`font-semibold ${textClass}`}>{opt}</Typography>
+                  <Typography className={`font-semibold ${textClass}`}>
+                    {opt}
+                  </Typography>
                 </Row>
               );
             })}
@@ -121,15 +140,24 @@ export default function QuestionList() {
         <CardWrapper className="mt-4 p-4 flex flex-col items-center gap-4">
           <Typography variant="lg">Total Questions: {total}</Typography>
           <Typography variant="lg">Correct Answers: {correct}</Typography>
-          <Typography variant="2xl" weight="bold" className="text-green-600">
-            Marks: {correct}
+          <Typography
+            variant="2xl"
+            weight="bold"
+            className={correct && correct >= 6 ? "text-success" : "text-danger"}
+          >
+            Marks: {correct && correct * 10}
+          </Typography>
+
+          <Typography
+            variant="xl"
+            weight="bold"
+            className={correct && correct >= 6 ? "text-success" : "text-danger"}
+          >
+            {correct && correct >= 6 ? "🎉 Passed" : "❌ Failed"}
           </Typography>
           <Button
-            text="Restart Quiz"
-            onClick={() => {
-              dispatch(resetQuizResult());
-              setCurrentPage(1);
-            }}
+            text="End Quiz & Logout"
+            onClick={handleLogout}
           />
         </CardWrapper>
       )}

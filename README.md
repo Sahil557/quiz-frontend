@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📝 Quiz Application
 
-## Getting Started
+A complete Quiz Application that allows Admin to create questions and Users to take quizzes, submit answers, and view final results.
+Built with Next.js (App Router) + Redux Toolkit + TailwindCSS on the frontend and Node.js + Express + MySql on the backend.
 
-First, run the development server:
+🚀 Features
+👤 Authentication
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+User Login & Register
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+JWT Token-based Authentication
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Protected Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🛠 Admin Features
 
-## Learn More
+Create Question
 
-To learn more about Next.js, take a look at the following resources:
+Add 4 Options (First 2 required)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add correct answer
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Save questions
 
-## Deploy on Vercel
+Validation included
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🧩 Quiz (User Side)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Fetch questions page by page
+
+Stepper with active → completed → pending states
+
+Circle options (A, B, C, D)
+
+Correct / Wrong answer coloring:
+
+🟢 Green = Correct
+
+🔴 Red = Wrong
+
+Auto-lock options after choosing
+
+📤 Submit Answer
+
+API: POST /quiz/submit
+
+Stores chosen answer
+
+Returns { success, correctAnswer }
+
+📊 Quiz Result
+
+API are in store 
+
+Returns { total, correct }
+
+Shown after completing all questions
+
+🏗 Tech Stack
+Frontend
+
+Next.js 14
+
+Redux Toolkit
+
+Axios
+
+TailwindCSS
+
+Custom reusable components (Input, Button, Typography, Divider, Stepper)
+
+Backend
+
+Node.js + Express
+
+MySql
+
+JWT authentication
+
+Modular routing & controllers
