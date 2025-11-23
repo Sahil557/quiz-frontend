@@ -25,7 +25,6 @@ export const createQuestion = createAsyncThunk(
   ) => {
     try {
       const response = await api.post('/questions', data);
-      debugger;
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Something went wrong');
